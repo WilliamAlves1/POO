@@ -1,7 +1,6 @@
 package br.com.alpha.prj1;
 
 public class Endereco {
-
     private String logradouro;
     private String complemento;
     private int numero;
@@ -41,7 +40,6 @@ public class Endereco {
 
     public String Imprimir() {
         String dados = "\n";
-
         dados += logradouro + ", " + numero;
         dados += "\nComplemento: " + complemento + "\nCEP " + cep;
         return dados;

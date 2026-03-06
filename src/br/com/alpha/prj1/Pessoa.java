@@ -1,23 +1,19 @@
 package br.com.alpha.prj1;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Pessoa {
-
     private String nome;
     private int idade;
     private char sexo;
-    private List<Endereco> enderecos; // Alterado para suportar múltiplos endereços
+    private Endereco[] enderecos;
 
     public Pessoa() {
-        this.enderecos = new ArrayList<>();
     }
 
-    public Pessoa(String nome, int idade, char sexo) {
+    public Pessoa(String nome, int idade, char sexo, int quantidadeEnderecos) {
         this.nome = nome;
         this.idade = idade;
         this.sexo = sexo;
-        this.enderecos = new ArrayList<>();
+        this.enderecos = new Endereco[quantidadeEnderecos];
     }
 
     public String getNome() {
@@ -44,24 +40,21 @@ public class Pessoa {
         this.sexo = sexo;
     }
 
-    public List<Endereco> getEnderecos() {
+    public Endereco[] getEnderecos() {
         return enderecos;
     }
 
-    public void setEnderecos(List<Endereco> enderecos) {
+    public void setEnderecos(Endereco[] enderecos) {
         this.enderecos = enderecos;
-    }
-
-    // Método para adicionar um novo endereço à lista
-    public void addEndereco(Endereco end) {
-        this.enderecos.add(end);
     }
 
     public String imprimirPessoa() {
         String dados = "Nome: " + nome + "\nIdade: " + idade + "\nSexo: " + sexo + "\n";
-        dados += "--- Endereços Cadastrados ---";
-        for (Endereco e : enderecos) {
-            dados += e.Imprimir();
+        dados += "Endereços:";
+        for (int i = 0; i < enderecos.length; i++) {
+            if (enderecos[i] != null) {
+                dados += "\nEndereço " + (i + 1) + ": " + enderecos[i].Imprimir();
+            }
         }
         return dados;
     }
