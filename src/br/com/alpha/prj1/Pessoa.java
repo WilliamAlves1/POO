@@ -1,28 +1,23 @@
 package br.com.alpha.prj1;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pessoa {
 
     private String nome;
     private int idade;
     private char sexo;
-    private Endereco end;
+    private List<Endereco> enderecos; // Alterado para suportar múltiplos endereços
 
-    public Pessoa(){
-        this.end = new Endereco();
+    public Pessoa() {
+        this.enderecos = new ArrayList<>();
     }
 
-    public Pessoa(String nome, int idade, char sexo){
+    public Pessoa(String nome, int idade, char sexo) {
         this.nome = nome;
         this.idade = idade;
         this.sexo = sexo;
-        this.end = new Endereco();
-    }
-
-    public Pessoa(String nome, int idade, char sexo, Endereco end){
-        this.nome = nome;
-        this.idade = idade;
-        this.sexo = sexo;
-        this.end = end;
+        this.enderecos = new ArrayList<>();
     }
 
     public String getNome() {
@@ -33,12 +28,12 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public Endereco getEnd() {
-        return end;
+    public int getIdade() {
+        return idade;
     }
 
-    public void setEnd(Endereco end) {
-        this.end = end;
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
 
     public char getSexo() {
@@ -49,23 +44,25 @@ public class Pessoa {
         this.sexo = sexo;
     }
 
-    public int getIdade() {
-        return idade;
+    public List<Endereco> getEnderecos() {
+        return enderecos;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 
-    public String imprimirPessoa(){
+    // Método para adicionar um novo endereço à lista
+    public void addEndereco(Endereco end) {
+        this.enderecos.add(end);
+    }
 
-        String dados = "";
-
-        dados += "Nome: " + nome + "\nIdade: " + idade + "\nSexo: " + sexo + "\n";
-        dados += "Endereço: " + end.Imprimir();
+    public String imprimirPessoa() {
+        String dados = "Nome: " + nome + "\nIdade: " + idade + "\nSexo: " + sexo + "\n";
+        dados += "--- Endereços Cadastrados ---";
+        for (Endereco e : enderecos) {
+            dados += e.Imprimir();
+        }
         return dados;
-
-
     }
-
 }
